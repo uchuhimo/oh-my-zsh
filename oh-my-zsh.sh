@@ -3,6 +3,9 @@
 #  env ZSH=$ZSH DISABLE_UPDATE_PROMPT=$DISABLE_UPDATE_PROMPT zsh -f $ZSH/tools/check_for_upgrade.sh
 #fi
 
+bin=`dirname "$0"`
+ZSH=`cd "$bin"; pwd`
+
 # Initializes Oh My Zsh
 
 # add a function path
@@ -30,7 +33,7 @@
 for config_file ($omz_libs); do
 #  custom_config_file="${ZSH_CUSTOM}/lib/${config_file:t}"
 #  [ -f "${custom_config_file}" ] && config_file=${custom_config_file}
-  source lib/config_file
+  source $ZSH/lib/$config_file.zsh
 done
 
 #is_plugin() {
@@ -45,7 +48,7 @@ for plugin ($omz_plugins); do
   #if is_plugin $ZSH_CUSTOM $plugin; then
   #  fpath=($ZSH_CUSTOM/plugins/$plugin $fpath)
   #elif is_plugin $ZSH $plugin; then
-    fpath=(plugins/$plugin $fpath)
+    fpath=($ZSH/plugins/$plugin $fpath)
   #fi
 done
 
@@ -80,7 +83,7 @@ for plugin ($omz_plugins); do
   #if [ -f $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh ]; then
   #  source $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh
   #elif [ -f $ZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
-    source plugins/$plugin/$plugin.plugin.zsh
+    source $ZSH/plugins/$plugin/$plugin.plugin.zsh
   #fi
 done
 
@@ -109,4 +112,4 @@ done
 #    fi
 #  fi
 #fi
-source "themes/ux.zsh-theme"
+source "$ZSH/themes/ux.zsh-theme"
