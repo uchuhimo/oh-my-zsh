@@ -112,4 +112,4 @@ done
 #    fi
 #  fi
 #fi
-source "$ZSH/themes/ux.zsh-theme"
+source "$ZSH/themes/ys.zsh-theme"
